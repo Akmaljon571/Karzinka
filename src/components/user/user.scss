@@ -1,0 +1,240 @@
+svg{
+    fill: #fff !important
+}
+
+.kiyim{
+    padding:0 10px;
+
+    &_h1{
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 20px;
+        color: #838383;
+    }
+
+    &_list{
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    &_item{
+        list-style-type: none;
+        width: 320px;
+        height: 377px;
+        padding: 15px 22px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        margin: 0 auto;
+        cursor: pointer;
+        margin-bottom: 50px;
+
+        &:hover{
+            box-shadow: 1px 5px 15px 5px rgb(162, 162, 162);
+        }
+        
+    }
+   
+    &_nav{
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    &_image{
+        margin-left: 43px;
+        margin-bottom: 54px;    
+        border-radius: 5px;
+    }
+
+    &_narx{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    &_h3{
+        font-family: Montserrat;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+    }
+
+    &_sp{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+    }
+
+    &Narx{
+        font-family: Montserrat;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #FFA542;
+    }
+
+    &Eski{
+        color:#AAAAAA;
+        text-decoration: line-through;
+    }
+}   
+
+.sersa {
+    position: absolute;
+    margin-right: 10px;
+}
+
+.Empy{
+    width: 70%;
+    height: 400px;
+    margin: 0 auto !important;
+    padding-top: 100px !important;
+    background-color: #fff;
+    border-radius: 15px;
+    font-size: 50px !important;
+}
+
+.boshSersa{
+    width: 20px;
+    height: 20px;
+    position: absolute; 
+   
+}
+
+.boshKarzinka{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50px;
+}
+
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_svg{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100px;
+        margin-top: 20px;
+    }
+    
+}
+
+.header_menu{
+    padding-top: 20px;
+    
+
+    &:hover{
+        color: cadetblue;
+    }
+}
+
+.tell_Link{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.tell_nomer{
+    width: 100px;
+    height: 50px;
+    display: flex;
+    margin-left: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff !important;   
+}
+
+.tell_admin{
+    height: 0;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-weight: 00;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #FFA542;
+    color: #fff !important;
+}
+
+.header{
+    margin-top: 10px;
+    margin-bottom: 100px;
+    &_search{
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .tt{
+        margin: 0 !important;
+    }
+
+    &_input{
+         height: 50px;
+         width: 550px;
+         border-radius: 45px;
+         border: 0px solid pink;
+         padding: 10px 25px;
+         font-size: 18px;
+
+         &:focus{
+            outline: none;
+         } 
+         
+    } 
+
+    &_svg{
+        position: absolute;
+        right: 40px;
+        cursor: pointer;
+        color: #fff !important;
+
+        
+        &:hover{
+            color: sandybrown;
+        }
+    }
+
+    &_til{
+        margin-left: 50px;
+        border: none;
+        padding: 5px;
+        border-radius: 10px;
+        font-size: 17px;
+        background-color: transparent;
+    }
+}

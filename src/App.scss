@@ -1,0 +1,77 @@
+*, *::after, *::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: disc;
+    font-family: sans-serif !important;
+}
+
+body {
+  // position: absolute;
+    margin: 0;
+    background-color: rgba(23,33,43,255) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  #root{
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .logIn{
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 200px;
+  }
+
+.form{
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+
+  &_input{
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-bottom: 2px solid rgb(37, 150, 190);
+    outline: none;
+    font-weight: 700;
+    color: white;
+    border-radius: 15px;
+  }
+
+  &_check{
+    border: 2px solid rgba(239,89,89,255) !important;
+    box-shadow:  1px 1px 10px rgba(239,89,89,255);
+  }
+
+  &_button{
+    padding: 20px;
+    background-color: rgb(37, 150, 190);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.qizil{
+  color: red;
+}
+
