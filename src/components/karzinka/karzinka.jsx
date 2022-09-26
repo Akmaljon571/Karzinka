@@ -1,7 +1,9 @@
 import useStart from '../../hooks/useStart';
 import { useEffect, useState } from 'react';
-import { Button, Result } from 'antd';
+import { Button, Image, Result } from 'antd';
 import React from 'react';
+import "./karzinka.scss"
+import udalit from "../../img/udalit.png";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -34,32 +36,60 @@ function Karzinka() {
         setCount(count + 1)
       }
 
-    return (  
-    <ul className="kiyim_list">
-    {render.length ? render.map(item => (
-              <li key={item.id} className="kiyim_item">
-               <div className="kiyim_nav">
-                <span className='bi'>
-                {!item.status &&   <img onClick={() => updateKarzinka(item.id)} src="https://cdn-icons-png.flaticon.com/512/3221/3221845.png" className='boshKarzinka' width={20} height={20} alt="dc" />}
-                </span>  
-                
-               <img src={item.img} height='237' className='kiyim_image' width='219' alt="" />
-               </div>
-               <div className="kiyim_narx">
-                  <h3 className='kiyim_h3'>{item.proName}</h3>
-                  <div className="kiyim_sp">
-                    <span className="kiyimNarx">{item.narx}</span>                             
+    return   <>
+         {render.length ? render.map(key => 
+            <li key={key.id} className="sotuv_ota">
+              <div className="sotuv_left">
+                <div className="sotuv_header">
+                  <img src={key.img} width={250} height={230} alt="" />
+                  <div className="sotuv_header--div"></div>
+                </div>
+                <div className="sotuv_main">
+                  <h2 className="sotuv_main--h2">{key.proName}</h2>
+                  <p className="sotuv_main--p">{key.narx}</p>
+                </div>
+                <div className="sotuv_footer">
+                  <img
+                    src={udalit}
+                    onClick={() => updateKarzinka(key.id)}
+                    id={key.id}
+                    className="sotuv_footer--udalit"
+                    alt="udalit"
+                  />
+                  <p className="sotuv_footer--narx">{key.narx}</p>
+                </div>
+              </div>
+              <div className="sanoq_rigth">
+                <div className="sanoq_rigth--header">
+                  <div className="sanoq_rigth--top">
+                    <h2 className="sanoq_rigth--h2">Narx</h2>
+                    <p className="sanoq_rigth--p">{key.narx}</p>
                   </div>
-               </div>
-              </li>
-          )) :  <Result
+                  <button onClick={() => navigate("/tolov")} className="sanoq_bottom--btn">
+                    To'lovga o'tish
+                  </button>
+                </div>
+                <div className="sanoq_rigth--footer">
+                  <div className="sanoq_rigth--top">
+                    <h2 className="sanoq_rigth--h2">Admin</h2>
+                    <p className="sanoq_rigth--p">+998900456961</p>
+                  </div>
+                  <a
+                    href={ "tel:+998900456961" }
+                    className="sanoq_bottom--link "
+                  >
+                    +998900456961
+                  </a>
+                </div>
+              </div>
+            </li>) : <Result
           style={{margin: "-100px auto 0 auto"}}
           status="404"
           title="500"
           subTitle="Sorry, the page you visited does not exist."
           extra={<Button onClick={() => navigate("/")} type="primary">Back Home</Button>}
-        />}
-          </ul> );
+         /> }
+      </> 
 }
 
 export default Karzinka;

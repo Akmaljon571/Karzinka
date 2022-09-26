@@ -1,8 +1,8 @@
-import { DislikeOutlined   } from "@ant-design/icons";
+import { DislikeOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import { notification } from 'antd';
 import { message } from 'antd';
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import React from 'react';
 import useStart from "./hooks/useStart";
 const key = 'updatable';
@@ -10,11 +10,11 @@ const key = 'updatable';
 function Prive() {
   const ism = useRef()  
   const pasword = useRef() 
-  const [open, setOpen, kirish, setBaza] = useState({});
   const [check, setCheck] = useState(true)
   const [observe, setObserve] = useState(false)
-  const { setKirish} = useStart()
+  const { setKirish, kirish, setBaza, open, setOpen} = useStart()
   const navigate = useNavigate()
+  const [sing, setSing] = useState(false);
 
 
   useEffect(() => {
@@ -43,6 +43,60 @@ function Prive() {
       pasword.current.value = ""
      }
   }, [setObserve, setOpen, observe]);
+
+  const singUp = () => {
+     if (ism.current.value != "" && pasword.current.value != "") {
+      fetch("http://localhost:8080/singUp", {
+        method: "POST",
+        body:JSON.stringify({
+          name: ism.current.value,
+          password: pasword.current.value
+        }),
+        headers: {
+          'Content-type': 'application/json',
+        }
+      })
+      .then(req => req.json())
+      .then(data => {
+        if (data) {
+          setOpen(data)
+        } else {
+          notification.open({
+            message: 'Bunday foydalanuvchi bor ',
+            description:
+              'Aka bunaqa foydalanuvchi bor Iltimos boshqa ism va password tanlang',
+            icon: (
+              <DislikeOutlined
+                style={{
+                  color: 'red',
+                }}
+           />
+         ),
+         });
+        }
+      })
+      setObserve(false)
+      ism.current.value = ""
+      pasword.current.value = ""
+        } else{
+      setCheck(false)
+      setTimeout(() => {
+        setCheck(true)
+      }, 1000);
+      notification.open({
+        message: 'Iltimos formani toldiring',
+        description:
+          'Agar siz formani toldirmasangiz biz malumotlaringizni tekshira olmaymiz. Iltimos!!! formani toldirishingizni sorab qolamiz',
+        icon: (
+          <DislikeOutlined
+            style={{
+              color: 'red',
+            }}
+       />
+     ),
+   });
+ }
+  }
 
   const kirishss = () => {
     if (ism.current.value != "" && pasword.current.value != "") {
@@ -82,6 +136,7 @@ function Prive() {
           duration: 2,
         });
       }, 1000);
+      setBaza(open)
       setKirish(open?.token)
       if (open?.token) {
         localStorage.setItem("baza", JSON.stringify(open))
@@ -95,15 +150,23 @@ function Prive() {
     }
   }, [open]);
 
+  console.log(open);
 
     return ( 
     <>
-    <h1 className={`${check ? " logIn" : "logIn qizil"}`}>Log In</h1>
+    {!sing ? <> <h1 className={`${check ? " logIn" : "logIn qizil"}`}>Log In</h1>
      <div className="form">
       <input ref={ism} className={`${check ? " form_input" : "form_input form_check"}`} required type="text" placeholder="Ismingiz" />
       <input ref={pasword} className={`${check ? " form_input" : "form_input form_check"}`} required type="password" placeholder="Password" />
+      <Link to={"/"} onClick={() => setSing(true)}>Sing Up</Link>
       <button onClick={kirishss} className="form_button">SUBMIT</button>
-     </div>
+     </div> </> :<> <h1 className={`${check ? " logIn" : "logIn qizil"}`}>Sing Up</h1>
+     <div className="form">
+      <input ref={ism} className={`${check ? " form_input" : "form_input form_check"}`} required type="text" placeholder="Ismingizni   kiriting!!!" />
+      <input ref={pasword} className={`${check ? " form_input" : "form_input form_check"}`} required type="password" placeholder="Password   kiriting!!!" />
+      <Link to={"/"} onClick={() => setSing(false)}>Log In</Link>
+      <button onClick={singUp} className="form_button">SUBMIT</button>
+     </div> </>}
 
     </> );
 }

@@ -13,6 +13,7 @@ export const StatePriveder = ({ children }) => {
     const [render, setRender] = useState([]);
     const [renderSerach, setRenderSerach] = useState(render)
     const [admin, setAdmin] = useState(true)
+    const [open, setOpen] = useState({});
 
     useEffect(() => {
         if (kirish) {
@@ -25,7 +26,6 @@ export const StatePriveder = ({ children }) => {
             })
             .then(req => req.json())
             .then(data => setBaza(data))
-            
         }
     }, [kirish, count]);
 
@@ -39,7 +39,7 @@ export const StatePriveder = ({ children }) => {
             .then((response) => response.json())
             .then((data) => {setRender(data); setRenderSerach(data)});
         }
-    }, [setRender, setRenderSerach, count]);
+    }, [setRender, setRenderSerach, count, kirish]);
 
     useEffect(() => {
        if (baza.length) {
@@ -47,7 +47,7 @@ export const StatePriveder = ({ children }) => {
        }
     }, [baza]);
      
-    const data = {setKirish, kirish, baza, setBaza, count, setCount, render, setRender, renderSerach, setRenderSerach, admin, setAdmin}
+    const data = {setKirish, kirish, baza, setBaza, count, setCount, render, setRender, renderSerach, setRenderSerach, admin, setAdmin, open, setOpen}
    
     return <State.Provider value={data}>{ children }</State.Provider>
 }

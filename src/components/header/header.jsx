@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 function Header() {
     const navigate = useNavigate()
-    const { baza, setRender, renderSerach, admin } = useStart()
+    const { baza, setRender, renderSerach, admin, open, setBaza } = useStart()
     const [link, setLink] = useState("/");
 
     useEffect(() => {

@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 
 function App() {
   const { kirish } = useStart()  
-  
     return (
       <Container>
         {kirish ? <Public /> : <Prive />}

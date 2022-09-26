@@ -1,0 +1,172 @@
+.footer{
+    width: 100%;
+    height: 149px;
+    padding: 29px;
+    background-color: #fff;
+    margin-top: 60px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 30px 30px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    bottom: 0;
+    margin-bottom: 0;
+    
+    &_h1{
+        font-family: Montserrat;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin: 0;
+        
+    }
+
+    &_list{
+        width: 500px;
+        max-height: 130px;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 30px;
+    }
+
+    &_item{
+        cursor: pointer;
+        list-style-type: none;
+    }
+
+    &_tg{
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        background-image: url(../../img/Telegram_2019_Logo.svg.png);
+        background-size: 50px;
+        background-position: center center;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    &_insta{
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        background-image: url(../../img/Instagram_logo_2016.svg.webp);
+        background-size: 50px;
+        background-position: center center;
+        position: absolute;
+        border-radius: 50%;
+        right: 180px;
+    }
+
+    &_web{
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        background-image: url(../../img/png-transparent-web-development-web-design-internet-web-hosting-service-world-wide-web-logo-symmetry-sphere-thumbnail.png);
+        background-size: 50px;
+        background-position: center center;
+        position: absolute;
+        border-radius: 50%;
+        right: 100px;
+    }
+
+    &_call{
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        background-image: url(../../img/124-1243931_phone-services-mobile-call-logo-png.png);
+        background-size: 50px;
+        background-position: center center;
+        position: absolute;
+        border-radius: 50%;
+        right: 20px;
+    }
+
+    &_til{
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 50px;
+    }
+
+    &_h5{
+        margin-top: 40px;
+    }
+
+    &_internet{
+        width: 20px;
+        height: 20px;
+        background-image: url('../../img/RU.png');
+        background-size: 20px;
+        background-position: center;
+    }
+
+    &_uz{
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+        font-family: Montserrat;
+        cursor: pointer;
+    }
+    
+    
+}
+
+.img_otas{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 320px;
+    height: 50px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.uz{
+    color: #FFA542;
+}
+
+.footer_active{
+    color: #FFA542;
+}
+
+@media only screen and (max-width: 1305px){
+    .footer{
+        &_ulash{
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-width: 1070px){
+    .footer{
+        &_til--ota{
+            display: none;
+        }
+    }
+}
+@media only screen and (max-width: 1070px){
+    .footer{
+        &_til--ota{
+            display: inline-block;
+        }
+
+        &_list{
+            display: none;
+        }
+    }
+}
+@media only screen and (max-width: 490px){
+    .footer{
+       display: none;
+    }
+}
