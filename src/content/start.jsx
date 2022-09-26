@@ -6,14 +6,19 @@ export const State = createContext()
 
 export const StatePriveder = ({ children }) => {
     const token = JSON.parse(localStorage.getItem("day2_token"))
+    const localAdmin = JSON.parse(localStorage.getItem("admin"))
     const userBaza = JSON.parse(localStorage.getItem("baza"))
     const [kirish, setKirish] = useState(token || "");
     const [baza, setBaza] = useState(userBaza || {});
     const [count, setCount] = useState(0);
     const [render, setRender] = useState([]);
     const [renderSerach, setRenderSerach] = useState(render)
-    const [admin, setAdmin] = useState(true)
+    const [admin, setAdmin] = useState(localAdmin || true)
     const [open, setOpen] = useState({});
+
+    useEffect(() => {
+        localStorage.setItem("admin", JSON.stringify(admin))
+    }, [admin]);
 
     useEffect(() => {
         if (kirish) {

@@ -48,7 +48,7 @@ body {
     padding: 10px 20px;
     background-color: transparent;
     border: 2px solid transparent;
-    border-bottom: 2px solid rgb(37, 150, 190);
+    border-bottom: 2px solid greenyellow;
     outline: none;
     font-weight: 700;
     color: white;
@@ -75,3 +75,17 @@ body {
   color: red;
 }
 
+.proQosh{
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(96, 170, 255);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.disablet{
+  border-bottom: 2px solid red;
+  color: red;
+}

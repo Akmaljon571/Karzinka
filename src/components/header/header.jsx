@@ -1,13 +1,44 @@
 import useStart from "../../hooks/useStart";
-import { Badge, Button } from "antd";
+import { Badge, Modal } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import {
+  Form,
+  Input,
+} from 'antd';
 
 function Header() {
     const navigate = useNavigate()
-    const { baza, setRender, renderSerach, admin, open, setBaza } = useStart()
+    const { baza, setRender, renderSerach, admin, setCount, count } = useStart()
     const [link, setLink] = useState("/");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const proName = useRef()
+    const narx = useRef()
+    const img = useRef()
+
+      const handleOk = () => {
+        setIsModalOpen(false);
+        if (proName.current.input.value != "" && narx.current.value != "" && img.current.value != "") {
+          fetch('http://localhost:8080/postProduct',{
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                 proName: proName.current.input.value,
+                 narx: narx.current.value,
+                 img: img.current.value
+            })})
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+            setCount(count + 1)
+        }
+      };
+
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      };
+
 
     useEffect(() => {
       if (baza?.data?.role == "admin") {
@@ -15,7 +46,7 @@ function Header() {
       } else if (baza?.data?.role == "user") {
        setLink("/")
       }
-     }, [baza]);
+    }, [baza]);
 
     const onSearch = e => {
         navigate(`${link}`)
@@ -72,7 +103,7 @@ function Header() {
             </div>          
            {admin ? <div className="navbar_svg">
               <Link to="/like">
-                <Badge count={baza.data.like.length}>
+                <Badge count={baza.data.like ? baza?.data?.like?.length : ""}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -86,7 +117,7 @@ function Header() {
                 </Badge>
               </Link>
               <Link to="/karzinka">
-                <Badge count={baza.data.producId.length}>
+                <Badge count={baza.data.producId ? baza?.data?.producId?.length : ""}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -99,10 +130,29 @@ function Header() {
                   </svg>
                 </Badge>
               </Link>
-            </div> : <button className="proQosh">Product Qo'shish</button>}
+            </div> : <button onClick={() => setIsModalOpen(true)} className="proQosh">Product Qo'shish +</button>}
           
           </div>
         </div>
+
+        {isModalOpen && <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+       
+      <Form
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 14,
+        }}
+        layout="horizontal"
+      >
+        <Form.Item>
+          <Input ref={proName} placeholder="Product nomi"/>
+        </Form.Item>
+           <input ref={narx} className="ant-input" placeholder="Product Narxi" style={{width: "58%", "marginBottom": "24px"}} type="text" />
+           <input ref={img} className="ant-input" placeholder="Product Rasmi" style={{width: "58%", "marginBottom": "24px"}} type="text" />
+      </Form>
+      </Modal>}
         
       </header>
      );

@@ -15,7 +15,7 @@ function User() {
     useEffect(() => {
       if (!admin) {
         navigate("/admin")
-      }
+      } 
     }, [admin]);
 
     const updateLike = (id) => {
