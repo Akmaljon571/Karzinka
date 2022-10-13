@@ -21,7 +21,7 @@ function Karzinka() {
         })
         .then(req => req.json())
         .then(data => setRender(data))
-    }, [count]);
+    }, [count, port, kirish]);
 
     const updateKarzinka = (id) => {
         if (baza.data.producId.includes(id)) {
