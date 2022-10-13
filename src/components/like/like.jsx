@@ -6,12 +6,12 @@ import useStart from "../../hooks/useStart";
 
 
 function Like() {
-    const { baza, setCount, count, kirish, admin} = useStart()
+    const { setCount, count, kirish, port} = useStart()
     const [render, setRender] = useState([]);
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch("http://localhost:8080/like", {
+        fetch(port + "like", {
             method: "GET",
             headers: {
               token : kirish,
@@ -19,10 +19,10 @@ function Like() {
         })
         .then(req => req.json())
         .then(data => setRender(data))
-    }, [count]);
+    }, [count, setRender, port, kirish]);
 
     const updateLike = (id) => {
-        fetch("http://localhost:8080/likeUpdate", {
+        fetch(port + "likeUpdate", {
             method: "PUT",
             headers: {
               token : kirish,

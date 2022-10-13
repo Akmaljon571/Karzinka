@@ -9,18 +9,18 @@ import { useEffect } from 'react';
 
 
 function User() {
-  const { baza, setCount, count, kirish, render, admin} = useStart()
+  const { baza, setCount, count, kirish, render, admin, port} = useStart()
   const navigate = useNavigate()
 
     useEffect(() => {
       if (!admin) {
         navigate("/admin")
       } 
-    }, [admin]);
+    }, [admin, navigate]);
 
     const updateLike = (id) => {
        if (baza.data.like.includes(id)) {
-        fetch("http://localhost:8080/likeUpdate", {
+        fetch(port + "likeUpdate", {
         method: "PUT",
         headers: {
           token : kirish,
@@ -29,7 +29,7 @@ function User() {
        })
        setCount(count + 1)
        } else {
-        fetch("http://localhost:8080/updateLike", {
+        fetch(port + "updateLike", {
         method: "PUT",
         headers: {
           token : kirish,
@@ -44,7 +44,7 @@ function User() {
 
     const updateKarzinka = (id) => {
       if (!baza.data.producId.includes(id)) {
-        fetch("http://localhost:8080/karzinkaUpdate", {
+        fetch(port + "karzinkaUpdate", {
         method: "PUT",
         headers: {
           token : kirish,

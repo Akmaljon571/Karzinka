@@ -15,7 +15,7 @@ function Admin() {
     const img = useRef()
     const navigate = useNavigate()
     const [proId, setProId] = useState(0);
-    const { setCount, count, render, admin} = useStart()
+    const { setCount, count, render, admin, port} = useStart()
     if (admin) navigate("/")
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPencil, setIsPencil] = useState(false);
@@ -23,7 +23,7 @@ function Admin() {
   
     const handleOk = () => {
       setIsModalOpen(false);
-      fetch('http://localhost:8080/delProduct',{
+      fetch(port + 'delProduct',{
             method: "DELETE",
             headers: {
             "Content-Type": "application/json"
@@ -46,7 +46,7 @@ function Admin() {
     };
 
     const handleOkey = () => {
-        fetch('http://localhost:8080/putPro',{
+        fetch(port + 'putPro',{
             method: "PUT",
             headers: {
             "Content-Type": "application/json"
@@ -66,7 +66,7 @@ function Admin() {
     }
 
     const pencel =  (id) => {
-        const tanlangan = render.find(e => e.id == id)
+        const tanlangan = render.find(e => e.id === id)
         setProId(id)
         setPenBaza(tanlangan)
         setIsPencil(true)

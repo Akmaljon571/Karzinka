@@ -4,9 +4,9 @@ import './footer.scss'
 
 function Footer() {
     const navigate = useNavigate()
-    const { admin, kirish, setKirish, setBaza, setOpen } = useStart()
+    const { admin, kirish, setKirish, setBaza, setOpen, port } = useStart()
     const logOut = () => {
-        fetch("http://localhost:8080/delUser", {
+        fetch(port + "delUser", {
             method: "DELETE",
             headers: {
               token : kirish,

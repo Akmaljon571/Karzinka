@@ -1,6 +1,6 @@
 import useStart from '../../hooks/useStart';
 import { useEffect, useState } from 'react';
-import { Button, Image, Result } from 'antd';
+import { Button, Result } from 'antd';
 import React from 'react';
 import "./karzinka.scss"
 import udalit from "../../img/udalit.png";
@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Karzinka() {
-    const { baza, setCount, count, kirish, admin} = useStart()
+    const { baza, setCount, count, kirish, port} = useStart()
     const [render, setRender] = useState([]);
     const navigate = useNavigate()
     useEffect(() => {
-        fetch("http://localhost:8080/karzinka", {
+        fetch(port + "karzinka", {
             method: "GET",
             headers: {
               token : kirish,
@@ -25,7 +25,7 @@ function Karzinka() {
 
     const updateKarzinka = (id) => {
         if (baza.data.producId.includes(id)) {
-          fetch("http://localhost:8080/updateKarzinka", {
+          fetch(port + "updateKarzinka", {
           method: "PUT",
           headers: {
             token : kirish,

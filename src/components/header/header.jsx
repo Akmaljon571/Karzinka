@@ -9,7 +9,7 @@ import {
 
 function Header() {
     const navigate = useNavigate()
-    const { baza, setRender, renderSerach, admin, setCount, count } = useStart()
+    const { baza, setRender, renderSerach, admin, setCount, count, port } = useStart()
     const [link, setLink] = useState("/");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const proName = useRef()
@@ -18,8 +18,8 @@ function Header() {
 
       const handleOk = () => {
         setIsModalOpen(false);
-        if (proName.current.input.value != "" && narx.current.value != "" && img.current.value != "") {
-          fetch('http://localhost:8080/postProduct',{
+        if (proName.current.input.value !== "" && narx.current.value !== "" && img.current.value !== "") {
+          fetch(port + 'postProduct',{
             method: "POST",
             headers: {
                "Content-Type": "application/json"
@@ -41,9 +41,9 @@ function Header() {
 
 
     useEffect(() => {
-      if (baza?.data?.role == "admin") {
+      if (baza?.data?.role === "admin") {
        setLink("/admin")
-      } else if (baza?.data?.role == "user") {
+      } else if (baza?.data?.role === "user") {
        setLink("/")
       }
     }, [baza]);

@@ -15,6 +15,7 @@ export const StatePriveder = ({ children }) => {
     const [renderSerach, setRenderSerach] = useState(render)
     const [admin, setAdmin] = useState(localAdmin || true)
     const [open, setOpen] = useState({});
+    const [port, setPort] = useState("https://karzinkabackent.herokuapp.com/");
 
     useEffect(() => {
         localStorage.setItem("admin", JSON.stringify(admin))
@@ -22,7 +23,7 @@ export const StatePriveder = ({ children }) => {
 
     useEffect(() => {
         if (kirish) {
-            fetch("http://localhost:8080/rout", {
+            fetch(port + "rout", {
                 method: "GET",
                 headers:{
                     'Content-type': 'application/json',
@@ -32,11 +33,11 @@ export const StatePriveder = ({ children }) => {
             .then(req => req.json())
             .then(data => setBaza(data))
         }
-    }, [kirish, count]);
+    }, [kirish, count, port]);
 
     useEffect(() => {
         if (kirish) {
-            fetch('http://localhost:8080/product',{
+            fetch(port + 'product',{
             method: "GET",
             headers: {
                 token : kirish,
@@ -44,7 +45,7 @@ export const StatePriveder = ({ children }) => {
             .then((response) => response.json())
             .then((data) => {setRender(data); setRenderSerach(data)});
         }
-    }, [setRender, setRenderSerach, count, kirish]);
+    }, [setRender, setRenderSerach, count, kirish, port]);
 
     useEffect(() => {
        if (baza.length) {
@@ -52,7 +53,7 @@ export const StatePriveder = ({ children }) => {
        }
     }, [baza]);
      
-    const data = {setKirish, kirish, baza, setBaza, count, setCount, render, setRender, renderSerach, setRenderSerach, admin, setAdmin, open, setOpen}
+    const data = {setKirish, kirish, baza, setBaza, count, setCount, render, setRender, renderSerach, setRenderSerach, admin, setAdmin, open, setOpen, port, setPort}
    
     return <State.Provider value={data}>{ children }</State.Provider>
 }

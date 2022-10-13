@@ -6,15 +6,15 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 
 function Public() {
-    const { baza, setBaza, setAdmin, open } = useStart()
+    const { baza, setAdmin } = useStart()
     const navigate = useNavigate()
 
     useEffect(() => {
-       if (baza?.data?.role == "admin") {
+       if (baza?.data?.role === "admin") {
         setAdmin(false)
         navigate("/admin")
        }
-      }, [baza]);
+      }, [baza, navigate, setAdmin]);
 
 
     return ( 

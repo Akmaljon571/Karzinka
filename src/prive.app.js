@@ -13,7 +13,7 @@ function Prive() {
   const email = useRef() 
   const [check, setCheck] = useState(true)
   const [observe, setObserve] = useState(false)
-  const { setKirish, kirish, setBaza, open, setOpen} = useStart()
+  const { setKirish, kirish, setBaza, open, setOpen, port} = useStart()
   const navigate = useNavigate()
   const [sing, setSing] = useState(false);
   const [disablet, setDisablet] = useState(true)
@@ -24,12 +24,12 @@ function Prive() {
     if (!kirish) {
       navigate("/")
     }
-  }, [kirish]);
+  }, [kirish, navigate]);
 
 
   useEffect(() => {
      if (observe) {
-      fetch("http://localhost:8080/login", {
+      fetch(port + "login", {
         method: "POST",
         body:JSON.stringify({
           name: ism.current.value,
@@ -45,13 +45,13 @@ function Prive() {
       ism.current.value = ""
       pasword.current.value = ""
      }
-  }, [setObserve, setOpen, observe]);
+  }, [setObserve, setOpen, observe, port]);
 
   const singUp = () => {
 
-     if (ism.current.value != "" && email.current.value != "") {
+     if (ism.current.value !== "" && email.current.value !== "") {
       setDisablet(false)
-      fetch("http://localhost:8080/singUp", {
+      fetch(port + "singUp", {
         method: "POST",
         body:JSON.stringify({
           name: ism.current.value,
@@ -67,7 +67,7 @@ function Prive() {
       .then(data => {
         if (data) {
           setUniquiId(data.id)
-          if (data.status != 401) {
+          if (data.status !== 401) {
             setOpen(data)
           } else {
             notification.open({
@@ -120,7 +120,7 @@ function Prive() {
   }
 
   const kirishss = () => {
-    if (ism.current.value != "" && pasword.current.value != "") {
+    if (ism.current.value !== "" && pasword.current.value !== "") {
          setObserve(true)
     } else{
       setCheck(false)
@@ -144,7 +144,7 @@ function Prive() {
 
 
   useEffect(() => {
-    if (open?.status == 200) {
+    if (open?.status === 200) {
       localStorage.setItem("day2_token", JSON.stringify(open.token))
       message.loading({
         content: 'Loading...',
@@ -162,14 +162,14 @@ function Prive() {
       if (open?.token) {
         localStorage.setItem("baza", JSON.stringify(open))
       }
-    } else if (open?.status == 401) {
+    } else if (open?.status === 401) {
       setCheck(false)
       setTimeout(() => {
         setCheck(true)
       }, 1000);
       message.error('This is an error message')
     }
-  }, [open]);
+  }, [open, setBaza, setKirish]);
 
     return ( 
     <>
